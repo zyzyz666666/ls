@@ -170,15 +170,19 @@ for (m = 1; m > 0; m++) {
                         var 信息按钮 = f.child(2);
                         log(信息按钮)
                         if (信息按钮.child(1).text().includes("非公开")) {
+                            有 = 0;
                             continue;
                         } else {
                             log("符合小组")
+                            有 = 1;
                             /////////////////////符合小组
                             try {
                                 for (m = 1; m > 0; m++) {
                                     real_click(信息按钮.child(1));
-                                    var 公开小组 = textContains("公开小组").findOne(1000);
-                                    if (公开小组) {
+                                    var 成员 = textContains("成员").findOne(1000);
+                                    var 简介 = textContains("简介").findOne(1000);
+                                    var 小组动态 = textContains("小组动态").findOne(1000);
+                                    if ((成员 && 简介) || (成员 && 小组动态)) {
                                         break;
                                     }
                                 }
@@ -267,7 +271,9 @@ for (m = 1; m > 0; m++) {
         sleep(5000);
         upslide();
     }
-    sleep(间隔 * 1000);
+    if (有 == 1) {
+        sleep(间隔 * 1000);
+    }
     if (parseInt(已发) >= parseInt(max)) {
         break;
     }
