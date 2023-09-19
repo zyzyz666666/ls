@@ -29,6 +29,7 @@ var max = ls.get("max")
 
 
 console.show();
+log("v1.")
 var 已发 = 0;
 function exit_app(name) {
     // fClear();
