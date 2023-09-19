@@ -1,5 +1,24 @@
 "uii"
 
+var window = floaty.window(
+    <frame gravity="center">
+        <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
+    </frame>
+);
+
+window.setPosition(device.width / 3, 0);
+window.setSize(device.width * 1 / 2, 250);
+window.setAdjustEnabled(false);
+
+var w = device.width;
+var h = device.height;
+
+var statusText = window.status;
+window.closeBtn.click(() => {//
+    log("程序即将关闭");
+    engines.stopAll();
+});
+
 var ls = storages.create("ls");
 
 var 文字 = ls.get("文字")
@@ -74,6 +93,19 @@ function upslide() {
     log("⬆正在滑动向上滑动");
     swipe(c * 4 / 5, b / 10 * 8, c * 4 / 5, b / 10 * 2, 660);
 };
+
+
+app.launchApp("Facebook");
+
+for (m = 0; m > -1; m++) {
+    back();
+    sleep(20)
+}
+
+
+
+
+
 exit_app("Facebook");
 
 app.launchApp("Facebook");
