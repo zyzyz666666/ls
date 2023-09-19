@@ -1,4 +1,4 @@
-"ui";
+"ui"
 
 var ls = storages.create("ls");
 
