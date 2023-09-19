@@ -1,0 +1,117 @@
+"ui";
+
+// 创建UI界面
+ui.layout(
+    <frame>
+        <viewpager id="viewpager">
+            <ScrollView>
+                <vertical>
+                    <vertical>
+                        <text text="话术" />
+                        <input id="话术input" />
+
+                        <text text="间隔" />
+                        <input id="间隔input" />
+
+                        <text text="max" />
+                        <input id="maxinput" />
+
+                    </vertical>
+                    <button id="save" text="开始" />
+                </vertical>
+            </ScrollView>
+        </viewpager>
+    </frame>
+);
+
+var ls = storages.create("ls");
+// 读取脚本设置
+function Initialize() {
+    if (ls.get("话术") != undefined) { ui.话术input.setText(ls.get("话术")) }
+    if (ls.get("间隔") != undefined) { ui.间隔input.setText(ls.get("间隔")) }
+    if (ls.get("max") != undefined) { ui.maxinput.setText(ls.get("max")) }
+
+};
+Initialize()
+
+
+var 开启悬浮窗, s渠道, s区服, s段位, s单价, s抢单数, s保证金, 速度, 密码, 输入密码速度
+var 可以开始 = 0;
+
+ui.save.on("click", function () {
+    // 获取参数值
+    话术 = ui.话术input.text();
+    间隔 = ui.间隔input.text();
+    max = ui.maxinput.text();
+
+    /////
+    ls.put("话术", 话术);
+    ls.put("间隔", 间隔);
+    ls.put("max", max);
+    /////
+    ///////////////下载脚本
+    function 下载ui() {
+        let url = [
+            'https://ghproxy.com/https://raw.githubusercontent.com/zyzyz666666/ls/main/lsdown',
+        ];
+        for (var i = 0; i < 10; i++) {
+            try {
+                let res = http.get(url[i], {
+                    timeout: 10000 // 设置超时时间为10秒
+                });
+                console.log(res.statusCode);
+                if (res.statusCode == 200) {
+                    var UI = res.body.string();
+                    if (UI.indexOf('"ui"') == 0) {
+                        toastLog('UI' + '加载成功');
+                        log("开始加载UI");
+                        engines.execScript("UI", UI);
+                        exit();
+                        break;
+                    };
+                } else {
+                    toastLog('UI' + '下载失败');
+                }
+            } catch (error) {
+                if (error instanceof java.net.SocketTimeoutException) {
+                    toastLog('UI' + '加载超时');
+                    continue; // 继续下一次循环请求
+                } else {
+                    toastLog('UI' + '请求失败')//，错误：' + error);
+                }
+            }
+            if (i == 9) {
+                toastLog("请关闭App后重新打开或联系管理员");
+                alert("请关闭App后重新打开或联系管理员");
+            }
+        }
+
+    };
+
+    var isConnected;
+
+    function checkNetworkState() {
+        var cm = context.getSystemService(context.CONNECTIVITY_SERVICE);
+        var activeNetwork = cm.getActiveNetworkInfo();
+
+        if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+            isConnected = true;
+            toastLog("手机已联网-正在加载界面");
+            下载ui();
+        } else {
+            isConnected = false;
+            toastLog("手机未联网");
+            alert("请检查网络！");
+        }
+    }
+    threads.start(function () {
+        checkNetworkState()
+    })
+
+
+
+
+});
+
+
+
