@@ -149,7 +149,7 @@ if (发现) {
     }
 }
 
-var 有=0;
+var 有 = 0;
 for (m = 1; m > 0; m++) {
     var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne()
     log('listparent')
@@ -165,11 +165,15 @@ for (m = 1; m > 0; m++) {
         for (n = 0; n < list.children().length; n++) {
             try {
                 var f = list.child(n).child(0)
-                if (f.children().length >= 3) {
+                if (f.children().length >= 2) {
                     try {
-                        var 信息按钮 = f.child(2);
+                        if (f.children().length == 3) {
+                            var 信息按钮 = f.child(2);
+                        } else if (f.children().length == 2) {
+                            var 信息按钮 = f.child(1).child(1);
+                        }
                         log(信息按钮)
-                        if (信息按钮.child(1).text().includes("非公开")) {
+                        if (信息按钮.text().includes("非公开")) {
                             有 = 0;
                             continue;
                         } else {
