@@ -97,14 +97,6 @@ function upslide() {
 
 app.launchApp("Facebook");
 
-for (m = 0; m > -1; m++) {
-    back();
-    sleep(20)
-}
-
-
-
-
 
 exit_app("Facebook");
 
