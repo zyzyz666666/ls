@@ -130,7 +130,7 @@ var 发现 = desc("发现").visibleToUser(true).findOne() || text("发现").visi
 if (发现) {
     for (m = 1; m > 0; m++) {
         real_click(发现)
-        var listparent = className("androidx.recyclerview.widget.RecyclerView").depth(10).visibleToUser(true).findOne(1000)
+        var listparent = className("androidx.recyclerview.widget.RecyclerView").depth(10).visibleToUser(true).findOne(3000)
         if (listparent) {
             break;
         }
