@@ -172,7 +172,7 @@ for (m = 1; m > 0; m++) {
                         if (信息按钮.child(1).text().includes("非公开")) {
                             continue;
                         } else {
-
+                            log("符合小组")
                             /////////////////////符合小组
                             try {
                                 for (m = 1; m > 0; m++) {
