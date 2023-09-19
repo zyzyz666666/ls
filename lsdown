@@ -140,7 +140,7 @@ if (发现) {
         sleep(2000);
         downslide();
         sleep(2222);
-        log("正在寻找列表……")
+        log("正在寻找列表……(含id")
         var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne(3000)//.depth(10)
         if (listparent) {
             log("找到列表了")
