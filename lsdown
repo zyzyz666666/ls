@@ -141,7 +141,7 @@ if (发现) {
         downslide();
         sleep(2222);
         log("正在寻找列表……")
-        var listparent = className("androidx.recyclerview.widget.RecyclerView").visibleToUser(true).findOne(3000)//.depth(10)
+        var listparent = className("androidx.recyclerview.widget.RecyclerView").depth("10").visibleToUser(true).findOne(3000)//.depth(10)
         if (listparent) {
             log("找到列表了")
             break;
