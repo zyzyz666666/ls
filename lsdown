@@ -28,7 +28,7 @@ var 间隔 = ls.get("间隔")
 var max = ls.get("max")
 
 
-
+console.show();
 var 已发 = 0;
 function exit_app(name) {
     // fClear();
@@ -107,6 +107,7 @@ exit_app("Facebook");
 
 app.launchApp("Facebook");
 
+log("正在寻找6/6个选项卡")
 var 我的头像 = desc("菜单，第6/6个选项卡").visibleToUser(true).findOne()
 if (我的头像) {
     for (m = 1; m > 0; m++) {
@@ -118,7 +119,7 @@ if (我的头像) {
     }
 }
 
-
+log("正在寻找小组")
 var 小组 = desc("小组").visibleToUser(true).findOne() || text("小组").visibleToUser(true).findOne();
 if (小组) {
     for (m = 1; m > 0; m++) {
@@ -130,7 +131,7 @@ if (小组) {
     }
 }
 
-
+log("正在寻找发现")
 var 发现 = desc("发现").visibleToUser(true).findOne() || text("发现").visibleToUser(true).findOne();
 if (发现) {
     for (m = 1; m > 0; m++) {
@@ -138,6 +139,7 @@ if (发现) {
         sleep(2000);
         downslide();
         sleep(2222);
+        log("正在寻找列表……")
         var listparent = className("androidx.recyclerview.widget.RecyclerView").depth(10).visibleToUser(true).findOne(3000)
         if (listparent) {
             break;
