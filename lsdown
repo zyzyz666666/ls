@@ -93,7 +93,12 @@ function upslide() {
     log("⬆正在滑动向上滑动");
     swipe(c * 4 / 5, b / 10 * 8, c * 4 / 5, b / 10 * 2, 660);
 };
-
+function downslide() {
+    var c = device.width;
+    var b = device.height;
+    lloogg("↓正在滑动向上滑动");
+    swipe(c * 4 / 5, b / 10 * 2, c * 4 / 5, b / 10 * 8, 660);
+};
 
 app.launchApp("Facebook");
 
@@ -131,7 +136,7 @@ if (发现) {
     for (m = 1; m > 0; m++) {
         real_click(发现);
         sleep(2000);
-        upslide();
+        downslide();
         sleep(2222);
         var listparent = className("androidx.recyclerview.widget.RecyclerView").depth(10).visibleToUser(true).findOne(3000)
         if (listparent) {
