@@ -6,7 +6,7 @@ var window = floaty.window(
     </frame>
 );
 
-window.setPosition(device.width / 3, -180);
+window.setPosition(device.width / 3, -120);
 window.setSize(device.width * 1 / 2, 250);
 window.setAdjustEnabled(false);
 
