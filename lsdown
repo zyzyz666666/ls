@@ -96,7 +96,7 @@ function upslide() {
 function downslide() {
     var c = device.width;
     var b = device.height;
-    lloogg("↓正在滑动向上滑动");
+    log("↓正在滑动向上滑动");
     swipe(c * 4 / 5, b / 10 * 2, c * 4 / 5, b / 10 * 8, 660);
 };
 
