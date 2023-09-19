@@ -182,7 +182,7 @@ for (m = 1; m > 0; m++) {
                             /////////////////////符合小组
                             try {
                                 for (m = 1; m > 0; m++) {
-                                    real_click(信息按钮.child(1));
+                                    real_click(信息按钮);
                                     var 成员 = textContains("成员").findOne(1000);
                                     var 简介 = textContains("简介").findOne(1000);
                                     var 小组动态 = textContains("小组动态").findOne(1000);
