@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试3")
+// alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -43,11 +43,10 @@ var max = ls.get("max")
 
 console.show();
 log(话术)
-sleep(500)
 log(间隔)
-sleep(500)
-log(间隔)
-sleep(500)
+log(max)
+sleep(1000)
+console.hide();
 
 dynamicText("v1.")
 var atime = "1500";
