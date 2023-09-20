@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试3")
+alert("测试4")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -234,6 +234,7 @@ for (m = 1; m > 0; m++) {
                                     real_click(照片)
                                     var 第一张 = className("android.widget.GridView").visibleToUser(true).findOne(1000);
                                     if (第一张) {
+                                        log("找到相册，正在点击第一张")
                                         break;
                                     }
                                 }
