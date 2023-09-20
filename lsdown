@@ -1,7 +1,7 @@
 "uii"
 
 
-// alert("测试3")
+alert("测试4")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -252,8 +252,11 @@ for (m = 1; m > 0; m++) {
                                 for (m = 1; m > 0; m++) {
                                     real_click(第一张);
                                     var 输入框 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
+                                    var 下一步 = desc("下一步").visibleToUser(true).findOne(1000) || text("下一步").visibleToUser(true).findOne(1000);
                                     if (输入框) {
                                         break;
+                                    } else if (下一步) {
+                                        real_click(下一步)
                                     }
                                 }
 
