@@ -240,7 +240,7 @@ for (m = 1; m > 0; m++) {
                                     real_click(照片)
                                     var 第一张 = desc("照片").visibleToUser(true).findOne(1000);
                                     if (第一张) {
-                                        log("找到相册，正在点击第一张")
+                                        dynamicText("找到相册，正在点击第一张")
                                         sleep(500)
                                         break;
                                     }
@@ -310,7 +310,10 @@ for (m = 1; m > 0; m++) {
         upslide();
     }
     if (有 == 1) {
-        sleep(间隔 * 1000);
+        for (n = 0; n < parseInt(间隔); n++) {
+            dynamicText(String(parseInt(间隔) - n))
+            sleep(1000);
+        }
     }
     if (parseInt(已发) >= parseInt(max)) {
         break;
