@@ -3,6 +3,7 @@
 var window = floaty.window(
     <frame gravity="center">
         <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
+        <button id="show" text="显示" w="40" h="40" bg="#00FA9A" />
     </frame>
 );
 
@@ -18,6 +19,10 @@ window.closeBtn.click(() => {//
     log("程序即将关闭");
     engines.stopAll();
 });
+window.closeBtn.click(() => {//
+    log("打开悬浮窗");
+    console.show();
+});
 
 var ls = storages.create("ls");
 
@@ -28,8 +33,8 @@ var 间隔 = ls.get("间隔")
 var max = ls.get("max")
 
 
-console.show();
 log("v1.")
+var atime = "1500";
 var 已发 = 0;
 function exit_app(name) {
     // fClear();
@@ -108,6 +113,7 @@ exit_app("Facebook");
 
 app.launchApp("Facebook");
 
+sleep(atime)
 log("正在寻找6/6个选项卡")
 var 我的头像 = desc("菜单，第6/6个选项卡").visibleToUser(true).findOne()
 if (我的头像) {
@@ -120,6 +126,7 @@ if (我的头像) {
     }
 }
 
+sleep(atime)
 log("正在寻找小组")
 var 小组 = desc("小组").visibleToUser(true).findOne() || text("小组").visibleToUser(true).findOne();
 if (小组) {
@@ -132,14 +139,15 @@ if (小组) {
     }
 }
 
+sleep(atime)
 log("正在寻找发现")
 var 发现 = desc("发现").visibleToUser(true).findOne() || text("发现").visibleToUser(true).findOne();
 if (发现) {
     for (m = 1; m > 0; m++) {
         real_click(发现);
-        sleep(2000);
+        sleep(atime)
         downslide();
-        sleep(2222);
+        sleep(atime)
         log("正在寻找列表……(含id")
         var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne(3000)//.depth(10)
         if (listparent) {
@@ -201,7 +209,7 @@ for (m = 1; m > 0; m++) {
                                     }
                                 }
 
-
+                                sleep(atime)
                                 var 分享心情 = desc("分享心情...").visibleToUser(true).findOne() || text("分享心情...").visibleToUser(true).findOne();
                                 for (m = 1; m > 0; m++) {
                                     real_click(分享心情)
@@ -211,7 +219,7 @@ for (m = 1; m > 0; m++) {
                                     }
                                 }
 
-
+                                sleep(atime)
                                 var 照片 = textContains("照片").visibleToUser(true).findOne()
                                 for (m = 1; m > 0; m++) {
                                     real_click(照片)
@@ -221,10 +229,19 @@ for (m = 1; m > 0; m++) {
                                     }
                                 }
 
-                                var 第一张 = className("android.widget.GridView").visibleToUser(true).findOne();
-                                real_click(第一张.child(1));
-                                sleep(200)
 
+                                sleep(atime)
+                                var 第一张 = className("android.widget.GridView").visibleToUser(true).findOne();
+                                for (m = 1; m > 0; m++) {
+                                    real_click(第一张.child(1));
+                                    var 输入框 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
+                                    if (输入框) {
+                                        break;
+                                    }
+                                }
+
+
+                                sleep(atime)
                                 var 输入框 = className("android.widget.EditText").visibleToUser(true).findOne();
                                 if (输入框) {
                                     输入框.setText(文字)
