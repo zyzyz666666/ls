@@ -1,11 +1,13 @@
 "uii"
 
 
-alert("测试1")
+alert("测试2")
 var window = floaty.window(
     <frame gravity="center">
-        <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
-        <button id="show" text="显示" w="40" h="40" bg="#00FA9A" />
+        <horizontal>
+            <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
+            <text id="text" textSize="16sp" textColor="#f44336" />
+        </horizontal>
     </frame>
 );
 
@@ -16,15 +18,20 @@ window.setAdjustEnabled(false);
 var w = device.width;
 var h = device.height;
 
-var statusText = window.status;
+var statusText = window.text;
 window.closeBtn.click(() => {//
-    log("程序即将关闭");
+    dynamicText("程序即将关闭");
     engines.stopAll();
 });
-window.closeBtn.click(() => {//
-    log("打开悬浮窗");
-    console.show();
-});
+function dynamicText(adm) {
+    log(adm)
+    //对控件的操作需要在UI线程中执行
+    ui.run(function () {
+        statusText.setText(String(adm));
+    });
+
+}
+
 
 var ls = storages.create("ls");
 
@@ -35,12 +42,12 @@ var 间隔 = ls.get("间隔")
 var max = ls.get("max")
 
 
-log("v1.")
+dynamicText("v1.")
 var atime = "1500";
 var 已发 = 0;
 function exit_app(name) {
     // fClear();
-    log("尝试结束" + name + "APP");
+    dynamicText("尝试结束" + name + "APP");
     var packageName = getPackageName(name);
     if (!packageName) {
         if (getAppName(name)) {
@@ -49,36 +56,36 @@ function exit_app(name) {
             return false;
         }
     }
-    log("打开应用设置界面");
+    dynamicText("打开应用设置界面");
     app.openAppSetting(packageName);
     var appName = app.getAppName(packageName);
-    //log(appName);
-    log("等待加载界面")
+    //dynamicText(appName);
+    dynamicText("等待加载界面")
     //textMatches(/应用信息|应用详情/).findOne(5000);
     text(appName).findOne(5000);
     sleep(1500);
-    log("查找结束按钮")
+    dynamicText("查找结束按钮")
     //let stop = textMatches(/(^强行.*|.*停止$|^结束.*)/).packageNameMatches(/.*settings.*|.*securitycenter.*/).findOne();
     let stop = textMatches(/(强.停止$|.*停止$|结束运行|停止运行|[Ff][Oo][Rr][Cc][Ee] [Ss][Tt][Oo][Pp])/).findOne();
-    log("stop:", stop.enabled())
+    dynamicText("stop:", stop.enabled())
     if (stop.enabled()) {
-        //log("click:", stop.click());
+        //dynamicText("click:", stop.click());
         real_click(stop);
         sleep(1000);
-        log("等待确认弹框")
+        dynamicText("等待确认弹框")
         //let sure = textMatches(/(确定|^强行.*|.*停止$)/).packageNameMatches(/.*settings.*|.*securitycenter.*/).clickable().findOne();
         let sure = textMatches(/(确定|.*停止.*|[Ff][Oo][Rr][Cc][Ee] [Ss][Tt][Oo][Pp]|O[Kk])/).clickable().findOne(1500);
         if (!sure) {
-            log(appName + "应用已关闭");
+            dynamicText(appName + "应用已关闭");
             back();
             return false;
         }
-        log("sure click:", sure.click());
-        log(appName + "应用已被关闭");
+        dynamicText("sure click:", sure.click());
+        dynamicText(appName + "应用已被关闭");
         sleep(1000);
         back();
     } else {
-        log(appName + "应用不能被正常关闭或不在后台运行");
+        dynamicText(appName + "应用不能被正常关闭或不在后台运行");
         sleep(1000);
         back();
     }
@@ -87,24 +94,24 @@ function exit_app(name) {
 
 function real_click(obj) {
     for (let i = 1; i <= 3; i++) {
-        if (obj.click()) { log("real click: true"); return true; }
+        if (obj.click()) { dynamicText("real click: true"); return true; }
         sleep(300);
     }
     console.warn("控件无法正常点击：", obj);
-    log("尝试再次点击");
+    dynamicText("尝试再次点击");
     click(obj.bounds().centerX(), obj.bounds().centerY());
     return false;
 };
 function upslide() {
     var c = device.width;
     var b = device.height;
-    log("⬆正在滑动向上滑动");
+    dynamicText("⬆正在滑动向上滑动");
     swipe(c * 4 / 5, b / 10 * 8, c * 4 / 5, b / 10 * 2, 660);
 };
 function downslide() {
     var c = device.width;
     var b = device.height;
-    log("↓正在滑动向上滑动");
+    dynamicText("↓正在滑动向上滑动");
     swipe(c * 4 / 5, b / 10 * 2, c * 4 / 5, b / 10 * 8, 660);
 };
 
@@ -116,7 +123,7 @@ exit_app("Facebook");
 app.launchApp("Facebook");
 
 sleep(atime)
-log("正在寻找6/6个选项卡")
+dynamicText("正在寻找6/6个选项卡")
 var 我的头像 = desc("菜单，第6/6个选项卡").visibleToUser(true).findOne()
 if (我的头像) {
     for (m = 1; m > 0; m++) {
@@ -129,7 +136,7 @@ if (我的头像) {
 }
 
 sleep(atime)
-log("正在寻找小组")
+dynamicText("正在寻找小组")
 var 小组 = desc("小组").visibleToUser(true).findOne() || text("小组").visibleToUser(true).findOne();
 if (小组) {
     for (m = 1; m > 0; m++) {
@@ -142,7 +149,7 @@ if (小组) {
 }
 
 sleep(atime)
-log("正在寻找发现")
+dynamicText("正在寻找发现")
 var 发现 = desc("发现").visibleToUser(true).findOne() || text("发现").visibleToUser(true).findOne();
 if (发现) {
     for (m = 1; m > 0; m++) {
@@ -150,10 +157,10 @@ if (发现) {
         sleep(atime)
         downslide();
         sleep(atime)
-        log("正在寻找列表……(含id")
+        dynamicText("正在寻找列表……(含id")
         var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne(3000)//.depth(10)
         if (listparent) {
-            log("找到列表了")
+            dynamicText("找到列表了")
             break;
         }
     }
@@ -162,11 +169,11 @@ if (发现) {
 var 有 = 0;
 for (m = 1; m > 0; m++) {
     var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne()
-    log('listparent')
+    dynamicText('listparent')
     try {
         var list = listparent.child(0).child(0);
         if (list) {
-            log('list')
+            dynamicText('list')
         }
     } catch (error) {
         continue;
@@ -182,12 +189,12 @@ for (m = 1; m > 0; m++) {
                         } else if (f.children().length == 2) {
                             var 信息按钮 = f.child(1).child(1);
                         }
-                        log(信息按钮)
+                        dynamicText(信息按钮)
                         if (信息按钮.text().includes("非公开")) {
                             有 = 0;
                             continue;
                         } else {
-                            log("符合小组")
+                            dynamicText("符合小组")
                             有 = 1;
                             /////////////////////符合小组
                             try {
