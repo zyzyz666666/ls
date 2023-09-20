@@ -1,5 +1,7 @@
 "uii"
 
+
+alert("测试1")
 var window = floaty.window(
     <frame gravity="center">
         <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
