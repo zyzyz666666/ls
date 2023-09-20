@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试4")
+alert("测试5")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -235,6 +235,7 @@ for (m = 1; m > 0; m++) {
                                     var 第一张 = className("android.widget.GridView").visibleToUser(true).findOne(1000);
                                     if (第一张) {
                                         log("找到相册，正在点击第一张")
+                                        sleep(500)
                                         break;
                                     }
                                 }
@@ -254,7 +255,7 @@ for (m = 1; m > 0; m++) {
                                 sleep(atime)
                                 var 输入框 = className("android.widget.EditText").visibleToUser(true).findOne();
                                 if (输入框) {
-                                    输入框.setText(文字)
+                                    输入框.setText(String(文字))
                                 }
 
                                 var 发布 = desc("发布").visibleToUser(true).findOne() || text("发布").visibleToUser(true).findOne();
