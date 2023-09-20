@@ -130,7 +130,7 @@ app.launchApp("Facebook");
 
 sleep(atime)
 dynamicText("正在寻找6/6个选项卡")
-var 我的头像 = desc("菜单，第6/6个选项卡").visibleToUser(true).findOne()
+var 我的头像 = descMatches("菜单，第.*个选项卡").visibleToUser(true).findOne()
 if (我的头像) {
     for (m = 1; m > 0; m++) {
         real_click(我的头像)
