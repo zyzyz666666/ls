@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试2")
+alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
