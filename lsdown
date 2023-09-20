@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试4")
+alert("测试5")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -172,7 +172,7 @@ if (发现) {
     }
 }
 
-var 有 = 0;
+var 有;
 for (m = 1; m > 0; m++) {
     var listparent = className("androidx.recyclerview.widget.RecyclerView").id("com.facebook.katana:id/(name removed)").visibleToUser(true).findOne()
     dynamicText('listparent')
@@ -188,6 +188,7 @@ for (m = 1; m > 0; m++) {
         for (n = 0; n < list.children().length; n++) {
             try {
                 var f = list.child(n).child(0)
+                有 = 0;
                 if (f.children().length >= 2) {
                     try {
                         if (f.children().length == 3) {
@@ -308,16 +309,20 @@ for (m = 1; m > 0; m++) {
             } catch (error) {
                 continue;
             }
+            if (有 == 1) {
+                for (n = 0; n < parseInt(间隔); n++) {
+                    dynamicText(String(parseInt(间隔) - n))
+                    sleep(1000);
+                }
+            }
+            if (parseInt(已发) >= parseInt(max)) {
+                break;
+            }
         }
         sleep(5000);
         upslide();
     }
-    if (有 == 1) {
-        for (n = 0; n < parseInt(间隔); n++) {
-            dynamicText(String(parseInt(间隔) - n))
-            sleep(1000);
-        }
-    }
+
     if (parseInt(已发) >= parseInt(max)) {
         break;
     }
