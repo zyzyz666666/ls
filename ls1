@@ -1,5 +1,5 @@
 "uii"
-
+("测试1")
 
 // alert("测试3")
 var window = floaty.window(
