@@ -1,7 +1,5 @@
 "uii"
 
-"uii"
-
 
 // alert("测试3")
 var window = floaty.window(
@@ -166,8 +164,11 @@ if (为你精选) {
             dynamicText("开始评论");
             已评 = 已评 + 1;
             //break;
+            upslide();
+            dynamicText(已评)
         } else {
             upslide();
+            dynamicText(已评)
         }
     }
 }
