@@ -1,9 +1,7 @@
 "uii"
 
 
-alert("测试2")
-
-// alert("测试3")
+alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -43,7 +41,7 @@ var 评论1 = ls.get("评论1")
 console.show();
 log(评论1)
 sleep(1000)
-//console.hide();
+console.hide();
 
 dynamicText("v1.")
 var atime = "1500";
@@ -164,7 +162,37 @@ if (为你精选) {
         var 评论 = desc("评论").visibleToUser(true).findOne(2222) || text("评论").visibleToUser(true).findOne(2222);
         if (评论) {
             dynamicText("开始评论");
-            已评 = 已评 + 1;
+
+            //////
+            for (m = 1; m > 0; m++) {
+                real_click(评论);
+                var 发表公开言论1 = text("发表公开评论…").visibleToUser(true).findOne(1000);
+                var 发表公开言论2 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
+                if (发表公开言论1 && 发表公开言论2) {
+                    发表公开言论2.setText(String(评论1));
+                } else if (发表公开言论2 && !发表公开言论1) {
+                    break;
+                }
+            }
+
+            for (m = 1; m > 0; m++) {
+                var 发送 = desc("发送").visibleToUser(true).findOne(1000);
+                if (发送) {
+                    real_click(发送);
+                    已评 = 已评 + 1;
+                    sleep(200)
+                    break;
+                }
+            }
+
+            for (m = 1; m > 0; m++) {
+                back();
+                sleep(1000);
+                var 返回评论 = desc("评论").visibleToUser(true).findOne(2222) || text("评论").visibleToUser(true).findOne(2222);
+                if (返回评论) {
+                    break;
+                }
+            }
             //break;
             upslide();
             dynamicText(已评)
