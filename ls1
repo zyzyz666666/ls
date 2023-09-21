@@ -2,7 +2,7 @@
 
 
 alert("测试1")
-
+console.show()
 // alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
