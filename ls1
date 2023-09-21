@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试3")
+alert("测试5")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -36,6 +36,10 @@ function dynamicText(adm) {
 var ls = storages.create("ls");
 
 var 评论1 = ls.get("评论1")
+
+var 评论1间隔 = ls.get("评论1间隔")
+
+var 评论1max = ls.get("评论1max")
 
 
 console.show();
@@ -149,6 +153,7 @@ if (小组) {
     }
 }
 
+var 有;
 sleep(atime)
 dynamicText("正在寻找发现")
 var 为你精选 = desc("为你精选").visibleToUser(true).findOne() || text("为你精选").visibleToUser(true).findOne();
@@ -162,7 +167,7 @@ if (为你精选) {
         var 评论 = desc("评论").visibleToUser(true).findOne(2222) || text("评论").visibleToUser(true).findOne(2222);
         if (评论) {
             dynamicText("开始评论");
-
+            有 = 0;
             //////
             for (m = 1; m > 0; m++) {
                 real_click(评论);
@@ -193,12 +198,23 @@ if (为你精选) {
                     break;
                 }
             }
+            if (有 == 1) {
+                for (n = 0; n < parseInt(评论1间隔); n++) {
+                    dynamicText(String(parseInt(评论1间隔) - n))
+                    sleep(1000);
+                }
+            }
+            if (parseInt(已评) >= parseInt(评论1max)) {
+                break;
+            }
             //break;
             upslide();
             dynamicText(已评)
+            sleep(200)
         } else {
             upslide();
             dynamicText(已评)
+            sleep(200)
         }
     }
 }
