@@ -1,7 +1,7 @@
 "uii"
 
 
- alert("测试3")
+alert("测试1")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -44,6 +44,8 @@ var 评论1max = ls.get("评论1max")
 
 console.show();
 log(评论1)
+log(评论1间隔)
+log(评论1max)
 sleep(1000)
 console.hide();
 
@@ -160,8 +162,6 @@ var 为你精选 = desc("为你精选").visibleToUser(true).findOne() || text("�
 if (为你精选) {
     for (m = 1; m > 0; m++) {
         real_click(为你精选);
-        sleep(atime)
-        downslide();
         sleep(atime)
         dynamicText("正在寻找评论……(含id")
         var 评论 = desc("评论").visibleToUser(true).findOne(2222) || text("评论").visibleToUser(true).findOne(2222);
