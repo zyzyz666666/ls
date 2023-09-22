@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试3")
+alert("测试1")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -135,8 +135,12 @@ var 首页 = descMatches("动态，第.*个选项卡").visibleToUser(true).findO
 if (首页) {
     for (m = 1; m > 0; m++) {
         real_click(首页);
-        sleep(atime)
-        downslide();
+        var 前往个人主页 = desc("前往个人主页").visibleToUser(true).findOne(2222);
+        if (前往个人主页) {
+            break;
+        }
+    }
+    for (m = 1; m > 0; m++) {
         sleep(atime)
         dynamicText("正在寻找评论……(含but")
         var 评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(5000) ||
