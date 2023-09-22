@@ -156,9 +156,12 @@ if (首页) {
                     desc("打开动图搜索").visibleToUser(true).findOne(2222) &&
                     desc("显示照片和视频").visibleToUser(true).findOne(2222);
                 var 发表公开言论2 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
+                var 输入了 = text(String(评论2)).visibleToUser(true).findOne(2222);
                 if (发表公开言论1 && 发表公开言论2) {
                     发表公开言论2.setText(String(评论2));
                 } else if (发表公开言论2 && !发表公开言论1) {
+                    continue;
+                } else if (输入了) {
                     break;
                 }
             }
