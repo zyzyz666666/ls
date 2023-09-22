@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试5")
+ alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -185,6 +185,7 @@ if (为你精选) {
                 if (发送) {
                     real_click(发送);
                     已评 = 已评 + 1;
+                    有 = 1;
                     sleep(200)
                     break;
                 }
@@ -203,6 +204,7 @@ if (为你精选) {
                     dynamicText(String(parseInt(评论1间隔) - n))
                     sleep(1000);
                 }
+                有 = 0;
             }
             if (parseInt(已评) >= parseInt(评论1max)) {
                 break;
