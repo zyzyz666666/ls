@@ -1,4 +1,197 @@
 "uii"
 
-alert("暂无测试2“）
 
+ alert("测试1")
+var window = floaty.window(
+    <frame gravity="center">
+        <horizontal>
+            <button id="closeBtn" text="停止" w="40" h="40" bg="#00FA9A" />
+            <text id="text" textSize="16sp" textColor="#f44336" />
+        </horizontal>
+    </frame>
+);
+
+window.setPosition(device.width / 3, -30);
+window.setSize(device.width * 1 / 2, 250);
+window.setAdjustEnabled(false);
+
+var w = device.width;
+var h = device.height;
+
+var statusText = window.text;
+window.closeBtn.click(() => {//
+    dynamicText("程序即将关闭");
+    engines.stopAll();
+});
+function dynamicText(adm) {
+    log(adm)
+    //对控件的操作需要在UI线程中执行
+    ui.run(function () {
+        statusText.setText(String(adm));
+    });
+
+}
+
+
+var ls = storages.create("ls");
+
+var 评论2 = ls.get("评论2")
+
+var 评论2间隔 = ls.get("评论2间隔")
+
+var 评论2max = ls.get("评论2max")
+
+
+console.show();
+log(评论2)
+log(评论2间隔)
+log(评论2max)
+sleep(1000)
+console.hide();
+
+dynamicText("v1.")
+var atime = "1500";
+var 已评 = 0;
+function exit_app(name) {
+    // fClear();
+    dynamicText("尝试结束" + name + "APP");
+    var packageName = getPackageName(name);
+    if (!packageName) {
+        if (getAppName(name)) {
+            packageName = name;
+        } else {
+            return false;
+        }
+    }
+    dynamicText("打开应用设置界面");
+    app.openAppSetting(packageName);
+    var appName = app.getAppName(packageName);
+    //dynamicText(appName);
+    dynamicText("等待加载界面")
+    //textMatches(/应用信息|应用详情/).findOne(5000);
+    text(appName).findOne(5000);
+    sleep(1500);
+    dynamicText("查找结束按钮")
+    //let stop = textMatches(/(^强行.*|.*停止$|^结束.*)/).packageNameMatches(/.*settings.*|.*securitycenter.*/).findOne();
+    let stop = textMatches(/(强.停止$|.*停止$|结束运行|停止运行|[Ff][Oo][Rr][Cc][Ee] [Ss][Tt][Oo][Pp])/).findOne();
+    dynamicText("stop:", stop.enabled())
+    if (stop.enabled()) {
+        //dynamicText("click:", stop.click());
+        real_click(stop);
+        sleep(1000);
+        dynamicText("等待确认弹框")
+        //let sure = textMatches(/(确定|^强行.*|.*停止$)/).packageNameMatches(/.*settings.*|.*securitycenter.*/).clickable().findOne();
+        let sure = textMatches(/(确定|.*停止.*|[Ff][Oo][Rr][Cc][Ee] [Ss][Tt][Oo][Pp]|O[Kk])/).clickable().findOne(1500);
+        if (!sure) {
+            dynamicText(appName + "应用已关闭");
+            back();
+            return false;
+        }
+        dynamicText("sure click:", sure.click());
+        dynamicText(appName + "应用已被关闭");
+        sleep(1000);
+        back();
+    } else {
+        dynamicText(appName + "应用不能被正常关闭或不在后台运行");
+        sleep(1000);
+        back();
+    }
+    return true;
+};
+
+function real_click(obj) {
+    for (let i = 1; i <= 3; i++) {
+        if (obj.click()) { dynamicText("real click: true"); return true; }
+        sleep(300);
+    }
+    console.warn("控件无法正常点击：", obj);
+    dynamicText("尝试再次点击");
+    click(obj.bounds().centerX(), obj.bounds().centerY());
+    return false;
+};
+function upslide() {
+    var c = device.width;
+    var b = device.height;
+    dynamicText("⬆正在滑动向上滑动");
+    swipe(c * 4 / 5, b / 10 * 8, c * 4 / 5, b / 10 * 2, 660);
+};
+function downslide() {
+    var c = device.width;
+    var b = device.height;
+    dynamicText("↓正在滑动向上滑动");
+    swipe(c * 4 / 5, b / 10 * 2, c * 4 / 5, b / 10 * 8, 660);
+};
+
+app.launchApp("Facebook");
+
+
+exit_app("Facebook");
+
+app.launchApp("Facebook");
+
+sleep(atime)
+dynamicText("正在寻找*/*个选项卡")
+var 首页 = descMatches("动态，第.*个选项卡").visibleToUser(true).findOne()
+if (首页) {
+    for (m = 1; m > 0; m++) {
+        real_click(首页);
+        sleep(atime)
+        downslide();
+        sleep(atime)
+        dynamicText("正在寻找评论……(含but")
+        var 评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(2222) ||  className("android.widget.Button").text("评论").visibleToUser(true).findOne(2222);
+        if (评论) {
+            dynamicText("开始评论");
+            有 = 0;
+            //////
+            for (m = 1; m > 0; m++) {
+                real_click(评论);
+                var 发表公开言论1 = text("发表公开评论…").visibleToUser(true).findOne(1000);
+                var 发表公开言论2 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
+                if (发表公开言论1 && 发表公开言论2) {
+                    发表公开言论2.setText(String(评论2));
+                } else if (发表公开言论2 && !发表公开言论1) {
+                    break;
+                }
+            }
+
+            for (m = 1; m > 0; m++) {
+                var 发送 = desc("发送").visibleToUser(true).findOne(1000);
+                if (发送) {
+                    real_click(发送);
+                    已评 = 已评 + 1;
+                    有 = 1;
+                    sleep(200)
+                    break;
+                }
+            }
+
+            for (m = 1; m > 0; m++) {
+                back();
+                sleep(1000);
+                var 返回评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(2222) ||  className("android.widget.Button").text("评论").visibleToUser(true).findOne(2222);
+                if (返回评论) {
+                    break;
+                }
+            }
+            if (有 == 1) {
+                for (n = 0; n < parseInt(评论2间隔); n++) {
+                    dynamicText(String(parseInt(评论2间隔) - n))
+                    sleep(1000);
+                }
+                有 = 0;
+            }
+            if (parseInt(已评) >= parseInt(评论2max)) {
+                break;
+            }
+            //break;
+            upslide();
+            dynamicText(已评)
+            sleep(200)
+        } else {
+            upslide();
+            dynamicText(已评)
+            sleep(200)
+        }
+    }
+}
