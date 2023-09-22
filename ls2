@@ -1,7 +1,7 @@
 "uii"
 
 
- alert("测试1")
+ alert("测试2")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -50,7 +50,7 @@ sleep(1000)
 console.hide();
 
 dynamicText("v1.")
-var atime = "1500";
+var atime = "3888";
 var 已评 = 0;
 function exit_app(name) {
     // fClear();
