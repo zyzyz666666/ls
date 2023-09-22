@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("测试1")
+alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -101,11 +101,11 @@ function exit_app(name) {
 
 function real_click(obj) {
     for (let i = 1; i <= 3; i++) {
-        if (obj.click()) { dynamicText("real click: true"); return true; }
+        if (obj.click()) { log("real click: true"); return true; }
         sleep(300);
     }
     console.warn("控件无法正常点击：", obj);
-    dynamicText("尝试再次点击");
+    log("尝试再次点击");
     click(obj.bounds().centerX(), obj.bounds().centerY());
     return false;
 };
@@ -171,7 +171,10 @@ if (为你精选) {
             //////
             for (m = 1; m > 0; m++) {
                 real_click(评论);
-                var 发表公开言论1 = text("发表公开评论…").visibleToUser(true).findOne(1000);
+                var 发表公开言论1 = desc("显示贴图").visibleToUser(true).findOne(2222) &&
+                    desc("虚拟形象贴图").visibleToUser(true).findOne(2222) &&
+                    desc("打开动图搜索").visibleToUser(true).findOne(2222) &&
+                    desc("显示照片和视频").visibleToUser(true).findOne(2222);              
                 var 发表公开言论2 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
                 if (发表公开言论1 && 发表公开言论2) {
                     发表公开言论2.setText(String(评论1));
