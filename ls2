@@ -1,7 +1,7 @@
 "uii"
 
 
- alert("测试2")
+alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -139,7 +139,8 @@ if (首页) {
         downslide();
         sleep(atime)
         dynamicText("正在寻找评论……(含but")
-        var 评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(2222) ||  className("android.widget.Button").text("评论").visibleToUser(true).findOne(2222);
+        var 评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(5000) ||
+            className("android.widget.Button").text("评论").visibleToUser(true).findOne(5000);
         if (评论) {
             dynamicText("开始评论");
             有 = 0;
@@ -169,7 +170,7 @@ if (首页) {
             for (m = 1; m > 0; m++) {
                 back();
                 sleep(1000);
-                var 返回评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(2222) ||  className("android.widget.Button").text("评论").visibleToUser(true).findOne(2222);
+                var 返回评论 = className("android.widget.Button").desc("评论").visibleToUser(true).findOne(5000) || className("android.widget.Button").text("评论").visibleToUser(true).findOne(5000);
                 if (返回评论) {
                     break;
                 }
