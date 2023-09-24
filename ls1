@@ -1,7 +1,7 @@
 "uii"
 
 
-alert("试3")
+ alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -184,6 +184,7 @@ if (为你精选) {
                     log("正在输入")
                     发表公开言论2.setText(String(评论2));
                 } else if (发表公开言论2 && !发表公开言论1) {
+                    sleep(5000);
                     continue;
                 }
             }
