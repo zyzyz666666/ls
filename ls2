@@ -1,7 +1,7 @@
 "uii"
 
 
- alert("测试3")
+// alert("测试3")
 var window = floaty.window(
     <frame gravity="center">
         <horizontal>
@@ -151,10 +151,7 @@ if (首页) {
             //////
             for (m = 1; m > 0; m++) {
                 real_click(评论);
-                var 发表公开言论1 = desc("显示贴图").visibleToUser(true).findOne(2222) &&
-                    desc("虚拟形象贴图").visibleToUser(true).findOne(2222) &&
-                    desc("打开动图搜索").visibleToUser(true).findOne(2222) &&
-                    desc("显示照片和视频").visibleToUser(true).findOne(2222);
+                var 发表公开言论1 = text("发表公开评论…").visibleToUser(true).findOne(1000) || textMatches(/(以.*的身份评论)/).visibleToUser(true).findOne(1000)
                 var 发表公开言论2 = className("android.widget.EditText").visibleToUser(true).findOne(1000);
                 var 输入了 = text(String(评论2)).visibleToUser(true).findOne(2222);
                 if (输入了) {
