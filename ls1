@@ -178,6 +178,7 @@ if (为你精选) {
                     log("开始评论")
                     break;
                 }
+                sleep(1500);
             }
             for (m = 1; m > 0; m++) {
                 var 发表公开言论1 = text("发表公开评论…").visibleToUser(true).findOne(1000) || textMatches(/(以.*的身份评论)/).visibleToUser(true).findOne(1000)
@@ -188,7 +189,7 @@ if (为你精选) {
                     break;
                 } else if (发表公开言论1 && 发表公开言论2) {
                     log("正在输入")
-                    发表公开言论2.setText(String(评论2));
+                    发表公开言论2.setText(String(评论1));
                 } else if (发表公开言论2 && !发表公开言论1) {
                     sleep(5000);
                     continue;
